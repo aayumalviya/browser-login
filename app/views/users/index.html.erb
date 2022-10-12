@@ -1,0 +1,32 @@
+<nav class="navbar navbar-dark bg-dark" style= "height: 100px;">
+    <% if @users.present? %>
+        <%= link_to 'Logout', '/logout', class: 'btn btn-outline-light', :data => { :confirm => 'Are you sure?' }%>
+    <% else %>
+        <%= link_to 'Login', '/login', class: 'btn btn-outline-light', style: 'margin-right: 10px;' %>
+        <%#= link_to 'Logout', '/logout', class: 'btn btn-outline-light', :data => { :confirm => 'Are you sure?' }%>
+
+    <% end %>
+</nav>
+
+
+<%# @users.each do |user| %>
+    <%#= user.full_name %>
+    <%#= user.email %>
+    <%#= user.phone_number %>
+    <%#= user.password %>
+    <%
+=begin%>
+ <hr> 
+<%
+=end%>
+<%# end %>
+<div style="height: 500px;">
+</div>
+
+ <footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color:black; color:white;">
+      © 2022 Copyright:
+    </div>
+    <!-- Copyright -->
+</footer>
