@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   
   def index
-   @users = User.all
   end
 
   def new
@@ -10,18 +9,21 @@ class UsersController < ApplicationController
 
   def create 
     @user = User.new(user_params)
-    if @user.save 
-      flash[:notice]="Signup successful"
-      redirect_to users_path
+    @user.otp = SecureRandom.base64(2)
+    if @user.save
+      session[:user_id] = @user.id
+      UserMailer.with(user: @user).welcome_email.deliver_now
+      flash.now[:notice] = "User Created"
+      redirect_to '/otp'
     else 
-      flash[:notice]="Signup again"
+      flash.now[:notice] = "User not created"
       render :new
     end
   end
 
   private 
   def user_params
-    params.require(:user).permit(:full_name, :email, :user_name, :phone_number, :password)
+    params.require(:user).permit(:full_name, :email, :user_name, :phone_number, :password, :otp)
   end
   
 end

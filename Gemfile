@@ -57,3 +57,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
 gem 'webpacker', '~> 5.0'
 gem 'bcrypt', '~> 3.1.7'
+gem "letter_opener", group: :development
