@@ -1,0 +1,40 @@
+<%
+=begin%>
+ <center>
+<div class="card" style="width: 500px; height: 800px; margin-top: 50px; background-color: whitesmoke; ">
+    <h3 style="margin-top: 10px;">Sign Up</h3>
+    <%= image_tag "login-removebg-preview.png", class:"card-img-top" , style:"height: 150px; width: 150px; align: center; margin-left: 180px; margin-top: 30px;"%>
+    <div class="card-body">
+
+        <div style="width:400px; margin-left: 50px; margin-right: 50px;">
+            <%= form_with model: @user do |form| %>
+
+                <%= form.label :FullName%>
+                <%= form.text_field :full_name, class:"form-control"%><br>
+
+                <%= form.label :Email%>
+                <%= form.email_field :email, class:"form-control"%><br>
+
+                <%= form.label :user_name %>
+                <%= form.text_field :user_name, class:"form-control" %><br>
+
+                <%= form.label :image %>
+                <%= form.file_field :image, class:"form-control" %><br>
+                
+                <%= form.label :phone_number%>
+                <%= form.text_field :phone_number, class:"form-control"%><br>
+
+                <%= form.label :password%>
+                <%= form.text_field :password, class:"form-control"%><br>
+
+                <%= form.submit %><br />
+                <%#= link_to 'Change profile', edit_user_path(form) %>
+            <% end %>
+        </div>
+    </div>
+</div>
+</center>
+
+ 
+<%
+=end%>

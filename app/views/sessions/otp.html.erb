@@ -1,0 +1,15 @@
+<center>
+<div class="card" style="width: 500px; height: 400px; margin-top: 50px; background-color: whitesmoke;">
+    <%= image_tag "login-removebg-preview.png", class:"card-img-top" , style:"height: 150px; width: 150px; align: center; margin-left: 180px; margin-top: 30px;"%>
+    <div class="card-body">
+    <p>Please enter valid Otp</p>
+        <%= form_tag '/check_otp' do %>
+            <%= label_tag 'Otp'%>
+            <%= text_field_tag :otp %><br>
+            <br>
+            <%= submit_tag "Submit", class: "btn btn-info" %>
+                
+        <% end %>
+    </div>
+</div>
+</center>

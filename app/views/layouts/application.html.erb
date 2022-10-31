@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LoginWithoutUsingDeviceGem</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark bg-dark" style= "height: 120px;">
+       <% if current_user.present? %>
+        <% if current_user.image.attached? %>
+          <%= image_tag current_user.image, style: 'height: 100px; width: 150px;', class:"img-fluid rounded-circle border border-light border-1" %>
+          <%= link_to 'Change profile', edit_user_path(current_user.id), class: 'btn btn-outline-light', style: 'text-decoration: none; position: absolute; top: 34px; right: 75px; margin-right: 10px;' %>
+        <% end %>
+        <span style = 'color: white; position: absolute; top: 71px; left: 156px; '><%= current_user.email %></span>
+        <%= link_to 'Logout', '/logout', class: 'btn btn-outline-light', :data => { :confirm => 'Are you sure?' }, style: 'position: absolute; top: 35px; right: 2px;' %>
+    <% else %>
+        <%= link_to 'Login', '/login', class: 'btn btn-outline-light', style: 'margin-right: 10px;' %>
+        <%#= link_to 'Logout', '/logout', class: 'btn btn-outline-light', :data => { :confirm => 'Are you sure?' }%>
+
+    <% end %>
+     <%#= image_tag 'images-removebg-preview (1).png' , style: 'height: 100px; width: 150px; position: absolute; margin-left: 1160px;'%>
+  </nav>
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-<%= type %>">
+        <%= msg %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
