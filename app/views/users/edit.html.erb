@@ -1,7 +1,9 @@
 <center>
 <div class="card" style="width: 500px; height: fit-content; margin-top: 50px; background-color: whitesmoke; ">
     <h3 style="margin-top: 10px;">Edit Profile</h3>
-    <%= image_tag "login-removebg-preview.png", class:"card-img-top" , style:"height: 150px; width: 150px; align: center; margin-left: 180px; margin-top: 30px;"%>
+    <% if current_user.image.attached? %>
+        <%= image_tag current_user.image, class:"card-img-top" , style:"height: 150px; width: 150px; align: center; margin-left: 180px; margin-top: 20px;", class:"img-fluid rounded-circle border border-dark border-2"%>
+    <% end %>
     <div class="card-body">
 
         <div style="width:400px; margin-left: 50px; margin-right: 50px;">
@@ -22,9 +24,13 @@
                 <%= form.label :phone_number%>
                 <%= form.text_field :phone_number, class:"form-control"%><br>
 
+                <% @user.errors.full_messages_for(:password).each do |message| %>
+                    <div style= 'background-color: darkcyan; color: white'><%= message %></div>
+                <% end %>
                 <%= form.label :password%>
                 <%= form.password_field :password, class:"form-control"%><br>
-
+                
+                
                 <%= form.submit 'Update' %><br /><br />
                 <h4>Cancel my Account</h4>
                 <span>Unhappy?</span><br />

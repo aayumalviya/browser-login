@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     def valid_user
         if current_user.present?
             if current_user.otp_verified?
-                # redirect_to '/'
+                #  redirect_to users_path
             else
                 if controller_name != 'sessions' && ['new', 'create'].exclude?(action_name)
                     redirect_to '/otp'

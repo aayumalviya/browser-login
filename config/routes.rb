@@ -12,10 +12,11 @@ Rails.application.routes.draw do
   get '/signup', to: 'registrations#new'
   post '/registrations', to: 'registrations#create'
   # patch '/registrations', to: 'registrations#update'
-#  resources :registrations
+  #  resources :registrations
  resources :users do
    get 'edit_password' 
-   post 'update_password' 
+   post 'update_password'
+   get 'error_msg' 
  end 
 #  get '/forget_password' => 'users#forget_password'
   get '/forget_password' => 'passwords#new'

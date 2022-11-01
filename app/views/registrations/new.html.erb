@@ -24,7 +24,8 @@
 
                 <%= form.label :password%>
                 <%= form.password_field :password, class:"form-control"%><br>
-
+                <%= render "users/error_msg" %>
+               
                 <%= form.submit 'sign up', class: 'btn btn-outline-dark', style: 'border-radius: 40px; width: 200px;' %><br />
                 <%#= link_to 'Change profile', edit_registration_path(form) %>
             <% end %>

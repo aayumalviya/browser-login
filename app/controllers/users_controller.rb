@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :apply_validation, only: :update
   
     def index
       @current_user = current_user
@@ -10,11 +11,16 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:warning] = "Profile Updated Successfully"
-      redirect_to root_path
+    if params[:user][:password].present?
+      if @user.update(user_params)
+        flash[:warning] = "Profile Updated Successfully"
+        redirect_to root_path
+      else
+        render :edit
+      end
     else
       render :edit
+      flash[:danger] = "Fill the Password field"
     end
   end
 
@@ -40,8 +46,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def error_msg
+    user = User.find(params[:id])
+  end
+
+
+  def apply_validation
+    if params[:user][:password].blank?
+      flash[:danger] = "Password can't be blank"
+    end
+  end
+
   private 
   def user_params
     params.require(:user).permit(:full_name, :email, :user_name, :phone_number, :password, :otp, :image)
   end
+
 end
